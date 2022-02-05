@@ -17,7 +17,7 @@ from scrapy.exceptions import DropItem
 class DuplicatesPipeline:
 
     def __init__(self):
-        self.ids_seen = set()
+        self.titles_seen = set()
 
     def process_item(self, unique, spider):
         if unique['tref'] in self.titles_seen:
