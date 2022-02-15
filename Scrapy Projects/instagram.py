@@ -30,8 +30,8 @@ function main(splash)
     input.dispatchEvent(new Event('input', { bubbles: true}))
     }
 
-    modifyInput('username', "novelife@outlook.com")
-    modifyInput('password', "Mrizoj.2")
+    modifyInput('username', "xxxx")
+    modifyInput('password', "xxxx")
     document.querySelector("button[type='submit']").click()
     }
     ]])
