@@ -7,3 +7,9 @@ These folders contain scripts coded in the Python-programming language. These ar
 - The implementation of Scrapy Splash for Javascript loading pages
 - Interacting with the JSON data from a webpage 
 - An automator in selenium with multithreading to auto-click and auto-fill aspects of a page.
+
+I have built a scraper to optimally parse Instagram with SplashRequest/Scrapy.Request for optimum parsing speeds.
+
+Additional skills I have learnt:
+- Implementation of lua with splash
+- Implementation of Javascript with splash
