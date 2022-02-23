@@ -17,7 +17,7 @@ Additional skills I have learnt:
 Projects in Progress:
 - Scrape the Nextdoor App webpage
   - ~~I have a scraper which logs into the website~~
-  - Need to find a way to imitate user activity as requests to the network tab are static
+  - Need to find a way to imitate user activity because requests to the network tab are dynamic
 
 - Scrape Pittsburgh Archives for images of 'Top-secret' public accessed books (not available anwhere) on Mathematics and Logic.
   - ~~Build a scraper to get onto the archive~~
