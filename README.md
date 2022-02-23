@@ -3,10 +3,10 @@
 These folders contain scripts coded in the Python-programming language. These are web-scraping techniques that involved the following skills:
 - Understanding of Scrapy networking for Requests
 - Combining BeautifulSoup and JSON to parse web-page data within Scrapy for complex websites
-- Practice and use of ItemLoaders, cb_kwargs
-- The implementation of Scrapy Playwright for Javascript loading pages
-- The implementation of Scrapy Splash for Javascript loading pages
-- Interacting with the JSON data from a webpage 
+- Practice and use of ItemLoaders, cb_kwargs, meta, Pipelines, Settings and Items.
+- The implementation of Scrapy Playwright for Javascript loading pages; i.e. filling forms on a page, clicking buttons.
+- The implementation of Scrapy Splash for Javascript loading pages; i.e. filling forms on a page, clicking buttons.
+- Interacting with the JSON data from a webpage (Networks tab)
 - An automator in selenium with multithreading to auto-click and auto-fill aspects of a page.
 
 I have built a scraper to optimally parse Instagram with SplashRequest/Scrapy.Request for optimum parsing speeds.
@@ -14,6 +14,7 @@ I have built a scraper to optimally parse Instagram with SplashRequest/Scrapy.Re
 Additional skills I have learnt:
 - Implementation of lua with splash
 - Implementation of Javascript with splash
+- Alternative proxies and User-agents to prevent IP ban.
 
 Projects in Progress:
 - Scrape the Nextdoor App webpage
