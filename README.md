@@ -2,7 +2,7 @@
 
 These folders contain scripts coded in the Python-programming language. These are web-scraping techniques that involved the following skills:
 - Understanding of Scrapy networking for Requests
-- Combining BeautifulSoup and Json to parse web-page data within Scrapy for complex websites
+- Combining BeautifulSoup and JSON to parse web-page data within Scrapy for complex websites
 - Practice and use of ItemLoaders, cb_kwargs
 - The implementation of Scrapy Playwright for Javascript loading pages
 - The implementation of Scrapy Splash for Javascript loading pages
