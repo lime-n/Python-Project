@@ -19,7 +19,4 @@ Projects in Progress:
   - ~~I have a scraper which logs into the website~~
   - Need to find a way to imitate user activity because requests to the network tab are dynamic
 
-- Scrape Pittsburgh Archives for images of 'Top-secret' public accessed books (not available anwhere) on Mathematics and Logic.
-  - ~~Build a scraper to get onto the archive~~
-  - ~~grab the number of pages, title of books~~
-  - ~~Download the images and separate them into separate folders~~
+- Archive: scraping book pages from sources not accessible freely to the public elsewhere. To combine these book pages into pdfs and share these with free access.
