@@ -1,8 +1,4 @@
 import scrapy
-from scrapy_playwright.page import PageCoroutine
-from scrapy.item import Field
-from scrapy.loader import ItemLoader
-from itemloaders.processors import TakeFirst, MapCompose, Join
 from bs4 import BeautifulSoup
 import json
 import re
@@ -23,11 +19,6 @@ headers = {
     'Accept-Language': 'en-GB,en-US;q=0.9,en;q=0.8',
 }
 
-class carnapItem(scrapy.Item):
-    title = Field(input_processor = MapCompose(str.strip),
-    output_processor  = Join())
-    id_image = Field(output_processor = TakeFirst())
-    
 class carnapSpider(scrapy.Spider):
     name = 'carnap'
     start_urls = []
@@ -63,6 +54,9 @@ class carnapSpider(scrapy.Spider):
             yield response.follow(url=links, callback = self.parse_carnap, headers=headers)
         
     def parse_carnap(self, response):
+        """ Parse the website with Beautiful Soup and Json,  
+            by grabbing the ID for each link and it's title name
+        """
         soup = BeautifulSoup(response.body, 'lxml')
         for i in range(53, 54, 1):
             java_val= soup.select(f"*[type]:nth-child({i})")
@@ -75,25 +69,27 @@ class carnapSpider(scrapy.Spider):
                 page_count = data_test['islandoraInternetArchiveBookReader']['pageCount']
                 for id_m in id_no:
                     for pg in range(1, page_count+1):
+                        """ grab the correct naming conventions to later convert the file names 
+                            ---- next stage is to convert these images into a pdf.
+                        """
                         another_str=f'https://digital.library.pitt.edu/internet_archive_bookreader_get_image_uri/pitt:{id_m}-00{str(pg).zfill(2)}'
+                        id_url f'{id_m}-00{str(pg).zfill(2)}'
                         yield scrapy.Request(
                             url = another_str,
                             method='POST',
                             headers=headers,
                             callback = self.parse_images,
                             cb_kwargs = {
-                                'title':title}
+                                'title':title,
+                                'id_url':id_url}
                              )
         
-    def parse_images(self, response, title):
+    def parse_images(self, response, title, id_url):
         file_url = response.text
         item = DownfilesItem()
-        item['file_urls'] = [file_url]
+        item['file_urls'] = file_url
+        item['id_url'] = id_url
         item['original_file_name'] = title
         yield item
-        # loader = ItemLoader(carnapItem())
-        # loader.add_value('title', title)
-        # loader.add_value('id_image', response.text)
-        #yield loader.load_item()
-                        
+
 
