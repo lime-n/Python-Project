@@ -16,7 +16,7 @@ Additional skills I have learnt:
 - Implementation of Javascript with splash
 - Alternative proxies and User-agents to prevent IP ban.
 
-Projects in Progress:
+##Projects in Progress:
 - Scrape the Nextdoor App webpage
   - ~~I have a scraper which logs into the website~~
   - Need to find a way to imitate user activity because requests to the network tab are dynamic
