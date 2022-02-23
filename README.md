@@ -13,3 +13,13 @@ I have built a scraper to optimally parse Instagram with SplashRequest/Scrapy.Re
 Additional skills I have learnt:
 - Implementation of lua with splash
 - Implementation of Javascript with splash
+
+Projects in Progress:
+- Scrape the Nextdoor App webpage
+  - ~~I have a scraper which logs into the website
+  - Need to find a way to imitate user activity as requests to the network tab are static
+
+- Scrape Pittsburgh Archives for images of 'Top-secret' public accessed books (not available anwhere) on Mathematics and Logic.
+  - ~~Build a scraper to get onto the archive
+  - ~~grab the number of pages, title of books
+  - Download the images and separate them into separate folders
