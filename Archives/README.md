@@ -1,7 +1,7 @@
 **Archives:**
 
 Progress status of project:
-- Scrape Pittsburgh Archives for images of 'Top-secret' public accessed books (not available anwhere) on Mathematics and Logic.
+- Scrape Pittsburgh Archives for images of 'Top-secret' public accessed books (not available anywhere) on Mathematics and Logic.
   - ~~Build a scraper to get onto the archive~~
   - ~~grab the number of pages, title of books~~
   - ~~Download the images and separate them into separate folders~~
