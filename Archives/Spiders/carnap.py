@@ -34,16 +34,6 @@ class carnapSpider(scrapy.Spider):
                 url=url, headers=headers,
                 callback = self.parse
             )
-    
-    def parse(self, response):
-        container = response.xpath("//div[@class='islandora islandora-solr-search-results']/div")
-        for data in container:
-            href_data = data.xpath('(.//a)[position() mod 5=1]//@href').get()
-            href_data = '/viewer#'.join(href_data.split("#"))
-            links = response.urljoin(href_data)
-            loader = ItemLoader(carnapItem())
-            loader.add_value('links', links)
-            yield loader.load_item()
 
     def parse(self, response):
         container = response.xpath("//div[@class='islandora islandora-solr-search-results']/div")
