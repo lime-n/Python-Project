@@ -54,6 +54,10 @@ class EventSpider(Spider):
         )
 
     async def handle_response(self, response: PlaywrightResponse) -> None:
+        """
+        We can grab the post data with response.request.post - there are three different types for different needs.
+        The method below helps grab those resource types of 'xhr' and 'fetch' until I can work out how to only send these to the download request.
+        """
         self.logger.info(f'test the log of data: {response.request.resource_type, response.request.url, response.request.method}')
         jl_file = "test.jl"
         #data = defaultdict(list)
@@ -82,6 +86,9 @@ class EventSpider(Spider):
 
     def parse(self, response):
         data = pd.read_json('test.jl', lines=True)
+        """
+        You can then send requests here using those results above.
+        """
         yield {
             'data':data
         }
