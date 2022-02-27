@@ -1,6 +1,6 @@
-# Python-Project
+# Python-Scrapy-Project
 
-These folders contain scripts coded in the Python-programming language. These are web-scraping techniques that involved the following skills:
+This folder will contain scripts coded in the Python-programming language. These are web-scraping techniques that involved the following skills:
 - Understanding of Scrapy networking for Requests
 - Combining BeautifulSoup and JSON to parse web-page data within Scrapy for complex websites
 - Practice and use of ItemLoaders, cb_kwargs, meta, Pipelines, Settings and Items.
@@ -22,3 +22,13 @@ Additional skills I have learnt:
   - Need to find a way to imitate user activity because requests to the network tab are dynamic
 
 - Archive: scraping book pages from sources not accessible freely to the public elsewhere. To combine these book pages into pdfs and share these with free access.
+
+## Scrapy_playwight-Projects
+
+This will include project scripts that work with the `scrapy_playwright` framework.
+
+Recent projects:
+- Have only specific response types sent to the browser request
+- ~~Download the response urls, type and methods. Furthermore, grab the payload information for POST requests without human interaction on the browser.~~
+- Completely automate with the browser via `scrapy_playwright` and `scrapy` integration without user interaction on the web-browser.
+ - To achieve this I need to send specific response types to the browser request. Primarily not to overload the server, or my CPU. Then extract the url types by method - save the output through the `playwright_page_event_handler`, and parse the links on the next method.
