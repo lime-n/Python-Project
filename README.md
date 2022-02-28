@@ -19,7 +19,10 @@ Additional skills I have learnt:
 ## Projects in Progress:
 - Scrape the Nextdoor App webpage
   - ~~I have a scraper to fill form details to login and access the website~~
-  - Need to find a way to imitate user activity because requests to the network tab are dynamic
+  - ~~Need to find a way to imitate user activity because requests to the network tab are dynamic~~
+
+Successfully completed the scraper.
+  - Contact me for details on the Nextdoor scraper and data availability: emiljan_mrizaj@icloud.com
 
 - Archive: scraping book pages from sources not accessible freely to the public elsewhere. To combine these book pages into pdfs and share these with free access.
 
