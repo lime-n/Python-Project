@@ -13,4 +13,4 @@ A compilation of my project scripts for `playwright` integration with `scrapy` a
 Additional notes:
 - Opportunity to grab various results more multiple resource types for dynamic scrolling sites that have a defense towards the payload extraction. Such as the example above, where you would otherwise have to manually get the payload each time to access the JSON data.
 - I need to figure out a way to infinitely increase the timer without `wait_for_timeout`, this is unsuccessful for one other website that I've tried this on.
- - There's now a way to abort downloaded requests from getting responses to resource types.
+  - There's now a way to abort downloaded requests from getting responses to resource types.
