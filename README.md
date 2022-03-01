@@ -34,6 +34,5 @@ Recent projects:
 - ~~Download the response urls, type and methods. Furthermore, grab the payload information for POST requests without human interaction on the browser.~~
 - ~~Completely automate with the browser via `scrapy_playwright` and `scrapy` integration without user interaction on the web-browser.~~
   - ~~To achieve this I need to send specific response types to the browser request. Primarily not to overload the server, or my CPU. Then extract the url types by method - save the output through the `playwright_page_event_handler`, and parse the links on the next method.~~
-  ```diff
     - Method for this scraper has been Built.
-  ```
+
