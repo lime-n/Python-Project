@@ -4,4 +4,5 @@ Still work in progress:
 - Found out where the JSON containing all the details for every neighbourhood
 
 Requirements:
-- Waiting for the developers to answer the following suggestion posted on their [github](https://github.com/scrapy-plugins/scrapy-playwright/issues/61)
+-~~ Waiting for the developers to answer the following suggestion posted on their [github](https://github.com/scrapy-plugins/scrapy-playwright/issues/61)~~
+  - Successfully completed the Scraper.
