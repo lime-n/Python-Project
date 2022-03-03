@@ -6,64 +6,9 @@ import pandas as pd
 from collections import defaultdict
 import json
 
-cookies = {
-    'WE': 'df14c814-2462-4659-a7f6-ed8ea5f604ee220227',
-    'G_ENABLED_IDPS': 'google',
-    '_gcl_au': '1.1.989813006.1645995147',
-    '_rdt_uuid': '1645995147329.c6c0ba12-af24-4a13-9f19-7e997c0ed4a2',
-    '_gid': 'GA1.3.934130007.1645995147',
-    '_scid': '992921e5-03a5-4e94-b51d-9c18ee9554fe',
-    '_fbp': 'fb.2.1645995147668.1931482921',
-    '__pdst': 'de10943d3ff341b58f2ee8da3b7daaec',
-    'hubspotutk': '8fa1044e3612c0c7d36d3b5ef7044ed0',
-    '__gads': 'ID=c8c2166664b84ecc:T=1646064334:S=ALNI_MZ6knqEJ8iH51w1AnOX_ycBt08nJw',
-    'OptanonAlertBoxClosed': '2022-02-28T16:05:35.302Z',
-    '_pin_unauth': 'dWlkPVpqWTVOMlZsTTJVdFlUbGlaUzAwT1RGbExUaG1NR010WmpZMVkyVXhNalk0WkdZeg',
-    'lang': 'en-gb',
-    '_clck': '1d62ltu|1|eze|0',
-    'role-invitation-decline-notification': 'false',
-    'role-resignation-notification': 'false',
-    'seen-tour-in-past-day': 'true',
-    '__hssrc': '1',
-    'csrftoken': 'ZMnskqdzf6zq5dI7SjEIzQ755dmGrYOYBjgzViGgNBHa3ENxVufy948ZSRMryNXx',
-    'WERC': '1b1e0062-bcc4-4f27-946b-58783c6f64332203011646161950',
-    'ndbr_at': '4-0hOJQpUUTwEC4zrVvQZxdHZN17rDXHvS_YWHKFqck',
-    'ndbr_idt': 'eyJhbGciOiJSUzI1NiIsImtpZCI6ImFlNjVkMTc1LTRiODYtNGQ0OS04NDgzLWJiMjE3MDMwODY5YSIsInR5cCI6IkpXVCJ9.eyJhdF9oYXNoIjoiNmZrZEEwS0xLWWp1Tnd2djVHYVpsdyIsImF1ZCI6WyJuZXh0ZG9vci1kamFuZ28iLCJuZXh0ZG9vciJdLCJleHAiOjE2NDYyNDgzNTAsImlhdCI6MTY0NjE2MTk1MCwiaXNzIjoiaHR0cHM6Ly9hdXRoLm5leHRkb29yLmNvbSIsIm5kX3ByYyI6W3siY291bnRyeSI6IkdCIiwicGlkIjoiMTc1OTIyMDAyODI0NzAiLCJ1cmwiOiJodHRwczovL3VzZXIubmV4dGRvb3IuY28udWsvdjEvcHJvZmlsZS8xNzU5MjIwMDI4MjQ3MCJ9XSwic3ViIjoiZDdhZWZjMmMtYTUyMy00YWJkLWI0YTEtZTRmMDBjMzc4ZjAyIn0.NB7iPdm_GHH4UICVOtMSNC4Xk1uhMC81t6OkZer_aYi_MlI-EoDpY4M-zJBPLVU-WOQtYOR1fALvJp2tyZf1GLw3PAuhNd4BfTiQA5kbOiZ_h68E79YQdcUh0GAJLBhsVrNuXcQL0w5lPr09S7OMXSgwtTiuc9h_M83iYj4gwdY63n7jVa94b9am-dQh914GzmeC2ErUM64-KKzznhP9Cf_KkxXLTdhQ2p1kL-MuBLi3rILACAiP-BQmE5D8wQd1-h6KcyZw_470F8kNYrhI6KJCJCQNb7iCk7-9Fix4pR8CzmM5hP7IrPShMLZXCV1UFNvpG__20gENda5XTbOnEw',
-    's': 'tup88te7ncrvoungh8rfjrcpynktylr4',
-    'OptanonConsent': 'isIABGlobal=false&datestamp=Tue+Mar+01+2022+19%3A12%3A31+GMT%2B0000+(Greenwich+Mean+Time)&version=6.10.0&hosts=&consentId=f695093c-842f-40f0-8bc5-2f62f9c8fab1&interactionCount=2&landingPath=NotLandingPage&groups=C0001%3A1%2CC0003%3A0%2CC0004%3A0%2CC0002%3A0&AwaitingReconsent=false&geolocation=GB%3BENG',
-    '_gat_UA-18585915-10': '1',
-    '_gat_UA-18585915-1': '1',
-    '_gat_UA-18585915-20': '1',
-    '_uetsid': '2bc82420980f11ecb4f847571fa44ae9',
-    '_uetvid': '2bc84a30980f11ec8946d35cebe96f10',
-    '_ga': 'GA1.1.1925607416.1645995147',
-    '__hstc': '102379230.8fa1044e3612c0c7d36d3b5ef7044ed0.1645995149280.1646159686318.1646161952758.10',
-    '__hssc': '102379230.1.1646161952758',
-    '_clsk': 'rm68ze|1646161957479|3|0|f.clarity.ms/collect',
-    '_ga_L2ES4MTTT0': 'GS1.1.1646161950.15.1.1646161957.53',
-    'AWSALB': 'rWo4khogRoHwAC3JiyJKJcD7qMdn/yMGYyf0gFw+QiPNegZ74wOiev6IVSr2Qnkq5kAjLlM/XI4SB0ZpMzlHy8H63WaSehFQvhEM18JKUpGZgKsSf4ZT6TTHoRrOXBCoND6PYUYyIZqSKzRTCgAPLTqqXPaXtr8DjJx4aVr/ssSs5Jv4HA5qDJReragkcA==',
-    'AWSALBCORS': 'rWo4khogRoHwAC3JiyJKJcD7qMdn/yMGYyf0gFw+QiPNegZ74wOiev6IVSr2Qnkq5kAjLlM/XI4SB0ZpMzlHy8H63WaSehFQvhEM18JKUpGZgKsSf4ZT6TTHoRrOXBCoND6PYUYyIZqSKzRTCgAPLTqqXPaXtr8DjJx4aVr/ssSs5Jv4HA5qDJReragkcA==',
-    '_dd_s': 'logs=1&id=74adb7ad-c0bd-4575-acda-8d307e5a50b9&created=1646161942846&expire=1646162864028',
-}
+cookies = { "Your cookies here"}
 
-headers = {
-    'authority': 'nextdoor.co.uk',
-    'sec-ch-ua': '" Not A;Brand";v="99", "Chromium";v="98", "Google Chrome";v="98"',
-    'sec-ch-ua-mobile': '?0',
-    'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.109 Safari/537.36',
-    'content-type': 'application/json',
-    'accept': '*/*',
-    'x-nd-activity-source': 'no-referrer',
-    'x-nd-activity-id': 'BD10344F-80C3-4126-8AE2-B52E81DF7108',
-    'x-csrftoken': 'ZMnskqdzf6zq5dI7SjEIzQ755dmGrYOYBjgzViGgNBHa3ENxVufy948ZSRMryNXx',
-    'sec-ch-ua-platform': '"macOS"',
-    'origin': 'https://nextdoor.co.uk',
-    'sec-fetch-site': 'same-origin',
-    'sec-fetch-mode': 'cors',
-    'sec-fetch-dest': 'empty',
-    'referer': 'https://nextdoor.co.uk/g/rv2gy7olj/?is=nav_bar',
-    'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
-}
+headers = {"Your headers here"}
 
 full_url_post = {
     'group_name' :['For Sale or free', 'Free furniture', 'Gardening', 'Recruitment - Job Search', 'Deals & Discounts', 'CAT LOVERS', 'Cleaner', 'Business Owners, Entrepreneurs & Small Businesses'],
