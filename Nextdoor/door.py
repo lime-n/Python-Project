@@ -69,16 +69,7 @@ full_url_post = {
     'group_name' :['For Sale or free', 'Free furniture', 'Gardening', 'Recruitment - Job Search', 'Deals & Discounts', 'CAT LOVERS', 'Cleaner', 'Business Owners, Entrepreneurs & Small Businesses'],
     'urls' : ['https://nextdoor.co.uk/g/f1j03vs5p/?is=nav_bar', 'https://nextdoor.co.uk/g/rv2gy7olj/?is=nav_bar', 'https://nextdoor.co.uk/g/mgvsnzktt/?is=nav_bar',
         'https://nextdoor.co.uk/g/qbutu7via/?is=nav_bar', 'https://nextdoor.co.uk/g/a9fnmlnqz/?is=nav_bar', 'https://nextdoor.co.uk/g/gb9xl68su/?is=nav_bar', 
-        'https://nextdoor.co.uk/g/l2noxsnto/?is=nav_bar', 'https://nextdoor.co.uk/g/qd9pskzfj/?is=nav_bar'],
-    'groupId': ['17592188185234', '17592187666812','17592187694631','17592187551172','17592187738420', '17592187540765', '17592187495368','17592187573436'],
-    'nextpage':['eyJwb3N0X3RzIjogIjE2NDYwNTk2MDgxMjkwMDAiLCAicHJvbW9fcGFnZV9kYXRhIjogbnVsbCwgImZlZWRfdHlwZSI6ICIwIiwgIm9yZGVyaW5nX21vZGUiOiAtMn0',
-    'eyJwb3N0X3RzIjogIjE2NDU4MjMyMDUwMjIwMDAiLCAicHJvbW9fcGFnZV9kYXRhIjogbnVsbCwgImZlZWRfdHlwZSI6ICIwIiwgIm9yZGVyaW5nX21vZGUiOiAtMn0', 
-    'eyJwb3N0X3RzIjogIjE2NDYwNzQ1ODM5NjMwMDAiLCAicHJvbW9fcGFnZV9kYXRhIjogbnVsbCwgImZlZWRfdHlwZSI6ICIwIiwgIm9yZGVyaW5nX21vZGUiOiAtMn0',
-    'eyJwb3N0X3RzIjogIjE2NDU1OTY1MjAyMDcwMDAiLCAicHJvbW9fcGFnZV9kYXRhIjogbnVsbCwgImZlZWRfdHlwZSI6ICIwIiwgIm9yZGVyaW5nX21vZGUiOiAtMn0',
-    'eyJwb3N0X3RzIjogIjE2NDU5NDQ4ODExMDUwMDAiLCAicHJvbW9fcGFnZV9kYXRhIjogbnVsbCwgImZlZWRfdHlwZSI6ICIwIiwgIm9yZGVyaW5nX21vZGUiOiAtMn0',
-    'eyJwb3N0X3RzIjogIjE2NDYwNDI3MTk4MTkwMDAiLCAicHJvbW9fcGFnZV9kYXRhIjogbnVsbCwgImZlZWRfdHlwZSI6ICIwIiwgIm9yZGVyaW5nX21vZGUiOiAtMn0',
-    'eyJwb3N0X3RzIjogIjE2NDYxMjg1Nzc5ODUwMDAiLCAicHJvbW9fcGFnZV9kYXRhIjogbnVsbCwgImZlZWRfdHlwZSI6ICIwIiwgIm9yZGVyaW5nX21vZGUiOiAtMn0',
-    'eyJwb3N0X3RzIjogIjE2NDYwODI5ODQ2MzIwMDAiLCAicHJvbW9fcGFnZV9kYXRhIjogbnVsbCwgImZlZWRfdHlwZSI6ICIwIiwgIm9yZGVyaW5nX21vZGUiOiAtMn0']
+        'https://nextdoor.co.uk/g/l2noxsnto/?is=nav_bar', 'https://nextdoor.co.uk/g/qd9pskzfj/?is=nav_bar']
 }
 
 
@@ -90,7 +81,9 @@ class DoorSpider(Spider):
         'DOWNLOAD_DELAY':0.5
     }
 
-
+    """
+    Create a login event into Nextdoor
+    """
     def start_requests(self):
         for url in self.start_urls:
             yield Request(
@@ -103,8 +96,8 @@ class DoorSpider(Spider):
                         playwright_page_coroutines = [
                         #PageCoroutine("click", selector = ".onetrust-close-btn-handler.onetrust-close-btn-ui.banner-close-button.onetrust-lg.ot-close-icon"),
                         PageCoroutine("wait_for_timeout", 3000),
-                        PageCoroutine("fill", "#id_email", 'working.dollar.bill@gmail.com'),
-                        PageCoroutine("fill", "#id_password", 'turing.123'),
+                        PageCoroutine("fill", "#id_email", 'your_email'),
+                        PageCoroutine("fill", "#id_password", 'password'),
                         PageCoroutine("wait_for_load_state", "load"),
                         PageCoroutine("click", selector="#signin_button"),
                         PageCoroutine("wait_for_load_state", "load"),
@@ -115,25 +108,34 @@ class DoorSpider(Spider):
                             ))
 
     def parse(self, response):
+        """
+        Create a page handler to specifically grab content of the context, such as their method, url and resource type. This is because we're scrolling -
+        down the pages to grab the payload of each unique content. We use an infinite scroll and increase the event timer (Improvements in notes.)
+        """
         for url_ in full_url_post['urls']:
             yield Request(url=url_,
             headers=headers, 
             cookies=cookies,
             meta= dict(
-                            playwright = True,
-                            playwright_page_coroutines = [
-                            PageCoroutine("wait_for_timeout", 5000),
-                            #PageCoroutine("screenshot", path="page.png", full_page=True),
-                            PageCoroutine("wait_for_function", "window.scrollBy(0, document.body.scrollHeight)"),
-                            PageCoroutine('wait_for_selector', "div[data-testid='dwell-tracker-feedItem:17592206649436']"),
-                            PageCoroutine("screenshot", path="groups.png", full_page=True),
-                            PageCoroutine("wait_for_timeout", 80000000)],
-                            playwright_page_event_handlers = {
-                                "response":"handle_response"
-                            },)
-                                )
+                        playwright = True,
+                        playwright_page_coroutines = [
+                        
+                        PageCoroutine("wait_for_timeout", 5000),
+                        #PageCoroutine("screenshot", path="page.png", full_page=True),
+                        PageCoroutine("wait_for_function", """setInterval(function () {
+                                    var scrollingElement = (document.scrollingElement || document.body);
+                                    scrollingElement.scrollTop = scrollingElement.scrollHeight;
+                                }, 200);"""),
+                    PageCoroutine("wait_for_timeout", 80000000)],
+                        playwright_page_event_handlers = {
+                            "response":"handle_response"
+                        },)
+                            )
 
     async def handle_response(self, response: PlaywrightResponse) -> None:
+        """
+        Save the content from the networks of any web-browser specifically for `xhr` resource types.
+        """
         self.logger.info(f'You have logged the following data: {response.request.method, response.request.url, response.request.resource_type}')
         jl_file = "next_door.jl"
         #data = defaultdict(list)
@@ -151,6 +153,9 @@ class DoorSpider(Spider):
             pass
 
     def parse_url(self, response):
+        """
+        Parse the data for group_id and next_page unique keys. Then send requests to the site.
+        """
         data_post = pd.read_json("next_door.jl", lines=True)
         test= defaultdict(list)
         for post in data_post.post_data.values:
@@ -170,6 +175,10 @@ class DoorSpider(Spider):
                 )
 
     def parse_slug(self, response):
+        """
+        The objective here is to grab the `slug` values from each API request. By grabbing a large enough number of unique `slug`, which is the location name -
+        used by the Nextdoor to get Hood info for each neighbourhood.
+        """
         slug_data = defaultdict(list)
         for slug in json.loads(response.text)['data']['me']['groupsWithPromosFeed']['feedItems']:
             slug_data['slug'].append(slug['post']['author']['originationNeighborhood']['slug'])
@@ -179,6 +188,11 @@ class DoorSpider(Spider):
             slug_data['group_title'].append(slug['post']['audience']['link']['title'])
         yield {'data':slug_data}
             
+        """
+        ...
+        The hardest part has been accomplished. To get the rest of neighbourhood information we have to redirect to the neighbourhood url, then send requests - 
+        to that url by using our `slug` values to grab content for each neighbourhood. This will require an infinite scroll to grab all the posts for each neighbourhood.
         
+        """
         
 
