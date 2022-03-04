@@ -15,4 +15,4 @@ The following file: `Netdoor.py` contains the script required to properly scrape
 
 Improvements:
   - To build a Javascript infinite scroll with a mouse-scroll timer to approximately ~1 second lag time between each scroll. This prevents the server from overloading, and to give scrapy enough time to collect information on the site.
-  - An alternative measure to `wait_for_timeout`, such that when you have reached the botton of the page, then close that context. This should save the CPU from overloading because multiple pages are open.
+  - An alternative measure to `wait_for_timeout`, such that when you have reached the botton of the page, then close that page. This should save the CPU from overloading because multiple pages are open.
