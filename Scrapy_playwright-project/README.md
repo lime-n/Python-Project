@@ -11,6 +11,6 @@ A compilation of my project scripts for `playwright` integration with `scrapy` a
 - The script automates the scroll and grabs the `FETCH` resource type which contains the `API` for tiktok and the `payload` in the url. Therefore, saving the results and reading them in the next method for further parsing.
 
 Additional notes:
-- Opportunity to grab various results more multiple resource types for dynamic scrolling sites that have a defense towards the payload extraction. Such as the example above, where you would otherwise have to manually get the payload each time to access the JSON data.
+- Opportunity to grab various results from multiple resource types for dynamic scrolling sites that have a defense towards the payload extraction. Such as the example above, where you would otherwise have to manually get the payload each time to access the JSON data.
 - I need to figure out a way to infinitely increase the timer without `wait_for_timeout`, this is unsuccessful for one other website that I've tried this on.
   - There's now a way to abort downloaded requests from getting responses to resource types.
